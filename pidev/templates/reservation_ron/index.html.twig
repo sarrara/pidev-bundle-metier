@@ -1,0 +1,35 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}ReservationRon index{% endblock %}
+
+{% block body %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>NbrPersonne</th>
+                <th>Transport</th>
+                <th>Nourriture</th>
+                <th>User</th>
+                <th>Rondonnee</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation_ron in reservation_rons %}
+            <tr>
+                <td>{{ reservation_ron.nbrPersonne }}</td>
+                <td>{{ reservation_ron.transport ? 'Yes' : 'No' }}</td>
+                <td>{{ reservation_ron.nourriture ? 'Yes' : 'No' }}</td>
+                <td>{{ reservation_ron.idUser.nom }}</td>
+                <td>{{ reservation_ron.idRon.nom }}</td>
+               
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Article{% endblock %}
+
+{% block body %}
+
+    <section class="news-grid grid">
+        <div class="container">
+            <div class="row">
+                {% for article in articles %}
+                <div class="col-md-4">
+                    <div class="card-box-b card-shadow news-box">
+                        <div class="img-box-b">
+                            <img src="{{ asset('Upload/')}}{{ article.image }}" alt="" class="img-b img-fluid">
+                        </div>
+                        <div class="card-overlay">
+                            <div class="card-header-b">
+                                <div class="card-title-b">
+                                    <h2 class="title-2">
+                                        <a href="#">
+                                           Titre: {{ article.titre }}<br>
+                                        </a>
+                                    </h2>
+                                    Etat : {{ article.etat }}
+
+                                </div>
+                                <div class="card-date">
+                                    <span class="date-b">{{ article.dateEcrit ? article.dateEcrit|date('Y-m-d') : '' }}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    {% if article.etat != 'en attent' %}
+                    {% else %}
+                    <a href="{{ path('article_edit', {'id': article.id}) }}" class="btn btn-primary">Edit</a>
+                    <a href="{{ path('article_delete', {'id': article.id}) }}" class="btn btn-danger">Delete</a>
+                        {% endif %}
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+    </section>
+
+{% endblock %}

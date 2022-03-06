@@ -1,0 +1,45 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %} nos randonnées {% endblock %}
+{% block body %}
+    {% for camping in reservation_rons %}
+
+        <div class="col-md-4">
+            <div class="card-box-d">
+                <div class="card-img-d">
+                    <img src="{{ asset('Upload/')}}{{ camping.idRon.image }}" alt="" class="img-d img-fluid">
+                </div>
+                <div class="card-overlay card-overlay-hover">
+                    <div class="card-header-d">
+                        <div class="card-title-d align-self-center">
+                            <h3 class="title-d">
+                                <a href="#" class="link-two">{{ camping.idRon.nom }}
+                                    <br> </a>
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="card-body-d">
+
+                        <div class="info-agents color-a">
+                            <p>
+                                <strong>Localisation: </strong> {{ camping.idRon.localisation }}
+                            </p>
+                            <p>
+                                <strong>Date: </strong> {{ camping.idRon.dateDeb ? camping.idRon.dateDeb|date('Y-m-d') : '' }}
+                            </p>
+                            <p>
+                                <strong>Prix: </strong> {{ camping.idRon.prix }}
+                            </p>
+                            <p>
+                                <a href="{{ path('reservation_ron_edit', {'id': camping.id}) }}" class="btn btn-primary" style="text-align: center !important;">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <!--<a href="{{ path('reservation_ron_delete', {'id': camping.id}) }}" class="btn btn-danger" style="text-align: center !important;"onclick="return confirm('voulez-vous vraiment supprimer ceci')">supprimer</a>
+--> 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

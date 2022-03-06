@@ -1,0 +1,35 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Sponsor index{% endblock %}
+
+{% block body %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Contrat</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sponsor in sponsors %}
+            <tr>
+                <td>{{ sponsor.nom }}</td>
+                <td><a href="{{ asset('Upload/' ~  sponsor.contrat) }}">{{ sponsor.contrat }}</td>
+                <td>{{ sponsor.description }}</td>
+                <td><img src="{{ asset('Upload/')}}{{ sponsor.image }}" width="100"  /></td>
+
+                <td>
+                    <a href="{{ path('sponsor_delete', {'id': sponsor.id}) }}">Delete</a>
+                    <a href="{{ path('sponsor_edit', {'id': sponsor.id}) }}">edit</a>
+                </td>
+            </tr>
+
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

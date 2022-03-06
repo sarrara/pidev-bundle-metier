@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Article{% endblock %}
+
+{% block body %}
+
+    <section class="news-grid grid">
+        <div class="container">
+            <div class="row">
+                {% for article in articles %}
+                    {% if article.etat == 'Accepté' %}
+                    <div class="col-md-4">
+                        <div class="card-box-b card-shadow news-box">
+                            <div class="img-box-b">
+                                <img src="{{ asset('Upload/')}}{{ article.image }}" alt="" class="img-b img-fluid">
+                            </div>
+                            <div class="card-overlay">
+                                <div class="card-header-b">
+                                    <div class="card-title-b">
+                                        <h2 class="title-2">
+                                            <a href="#">
+                                                {{ article.titre }}
+                                            </a>
+                                        </h2>
+                                    </div>
+                                    <div class="card-date">
+                                        <span class="date-b">{{ article.dateEcrit ? article.dateEcrit|date('Y-m-d') : '' }}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <a href="{{ path('details_article', {'id': article.id}) }}" class="btn btn-primary">Details</a>
+                    </div>
+                 {% endif %}
+                {% endfor %}
+
+            </div>
+
+        </div>
+    </section>
+
+{% endblock %}

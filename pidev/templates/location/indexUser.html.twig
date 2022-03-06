@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Mes Commandes {% endblock %}
+
+
+{% block body %}
+
+    <section class="section-services section-t8">
+        <div class="container">
+
+            <div class="row">
+                {% for location in locations %}
+                    <div class="col-md-4">
+                        <div class="card-box-c foo">
+                            <div class="card-header-c d-flex">
+                                <div class="card-img-d">
+                                    <img src="{{ asset('Upload/')}}{{ location.idProduit.image }}" alt="" class="img-d img-fluid">
+                                </div>
+                            </div>
+                            <div class="card-body-c">
+                                <p class="content-c" style="text-align: center">
+                                    Produit :<strong>{{ location.idProduit.nom}}</strong><br>
+
+                                    Quantite :<strong>{{ location.quantite}}</strong>
+                                </p>
+                            </div>
+                            <div class="card-footer-c" style="text-align: center">
+                                <a href="{{ path('location_edit', {'id': location.id}) }}" class="btn btn-primary">Edit</a>
+                                <a href="{{ path('location_delete', {'id': location.id}) }}" class="btn btn-danger">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

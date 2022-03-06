@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Détails{% endblock %}
+{% block body %}
+
+    <section class="section-testimonials section-t8 nav-arrow-a">
+        <div class="container">
+
+            <div  class="swiper">
+                <div class="swiper-wrapper">
+
+                    <div class="carousel-item-a swiper-slide">
+                        <div class="testimonials-box">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="testimonial-img">
+                                        <img src="{{ asset('Upload/')}}{{ article.image }}" alt="" class="img-fluid"><br><br>
+                                        <a href="{{ path('article_pdf', {'id': article.id}) }}" class="btn btn-success">Extracter Article</a>
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="testimonial-ico">
+                                        <i class="bi bi-chat-quote-fill"></i>
+                                    </div>
+                                    <div class="testimonials-content">
+                                        <p class="testimonial-text">
+                                            {{ article.description }}
+                                        </p>
+                                    </div>
+                                    <div class="testimonial-author-box">
+                                        <img src="{{ asset('front/assets/img/mini-testimonial-1.jpg') }}" alt="" class="testimonial-avatar">
+                                        <h5 class="testimonial-author">{{ article.idUser.nom }}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- End carousel item -->
+
+
+                </div>
+            </div>
+            <div class="testimonial-carousel-pagination carousel-pagination">
+               <strong> Commentaires </strong><HR>
+
+                <div class="icon-box-content table-cell">
+                    {% for c in commantaires %}
+
+                    <div class="icon-box-title">
+                        <h4 class="icon-title">{{ c.idUser.nom }} :</h4>
+                    </div>
+                    <div class="icon-box-content">
+                            <span class="color-a"> {{ c.commentaire }}<br></span>
+                        {% if c.idUser == user %}
+                        <a href="{{ path('commentaire_delete', {'ida': c.id, 'id': article.id}) }}" class="btn btn-danger">delete</a>
+                        <a href="{{ path('commentaire_edit', {'id': c.id, 'ida': article.id}) }}" class="btn btn-primary">edit</a><br><br><br>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+
+                </div>
+
+
+
+
+                {{ form_start(form) }}
+
+                <div class="col-md-6 mb-3">
+                    <div class="form-group">Commenter_Vous :
+                        {{ form_widget(form.commentaire, { 'attr': {'class': 'form-control form-control-lg form-control-a'} }) }}
+                        {{ form_errors(form.commentaire) }}<br>
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <input type="submit" value="Enregistrer" class="btn btn-success" formnovalidate />
+                    </div>
+                </div>
+                {{ form_end(form) }}
+
+            </div>
+
+        </div>
+    </section>
+
+{% endblock %}

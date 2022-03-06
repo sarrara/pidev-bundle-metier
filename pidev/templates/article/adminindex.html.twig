@@ -1,0 +1,40 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Activitie List{% endblock %}
+
+{% block body %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Date de saisie</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Etat</th>
+            <th>User</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                <td>{{ article.titre }}</td>
+                <td>{{ article.dateEcrit ? article.dateEcrit|date('Y-m-d') : '' }}</td>
+                <td>{{ article.description }}</td>
+                <td> <img src="{{ asset('Upload/')}}{{ article.image }}"  width="100" ></td>
+                <td>{{ article.etat }}</td>
+                <td>{{ article.idUser.nom}}</td>
+
+                <td>
+                    {% if article.etat == 'en attent' %}
+                    <a href="{{ path('article_accepter', {'id': article.id}) }}">Accepter</a><br>
+                    <a href="{{ path('article_refuser', {'id': article.id}) }}">Refuser</a>
+                    {% endif %}
+                </td>
+            </tr>
+
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

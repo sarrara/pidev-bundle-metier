@@ -1,0 +1,38 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section class="section-about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 section-t8 position-relative">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-5">
+                            <img src="{{ asset('Upload/')}}{{ produit.image }}" alt="" class="img-fluid">
+                        </div>
+                        <div class="col-lg-2  d-none d-lg-block position-relative">
+                            <div class="title-vertical d-flex justify-content-start">
+                                <span>{{ produit.prix }} DTN</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-5 section-md-t3">
+                            <div class="title-box-d">
+                                <h3 class="title-d">
+                                    <span class="color-d">{{ produit.nom }}</span>
+                                    <br>
+                                </h3>
+                            </div>
+                            <p class="color-text-a">
+                                {{ produit.description }}
+                            </p>
+                        </div>
+
+                    </div><br>
+                    <a href="{{ path('location_new', {'id': produit.id}) }}" class="btn btn-danger">Louer</a>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

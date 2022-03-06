@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Nos Produits {% endblock %}
+
+
+{% block body %}
+
+    <section class="section-services section-t8">
+        <div class="container">
+
+            <div class="row">
+                {% for product in produits %}
+                <div class="col-md-4">
+                    <div class="card-box-c foo">
+                        <div class="card-header-c d-flex">
+                            <div class="card-img-d">
+                                <img src="{{ asset('Upload/')}}{{ product.image }}" alt="" class="img-d img-fluid">
+                            </div>
+                        </div>
+                        <div class="card-body-c">
+                            <p class="content-c" style="text-align: center">
+                                 <strong>{{ product.nom}}</strong>
+                            </p>
+                        </div>
+                        <div class="card-footer-c" style="text-align: center">
+                            <a href="{{ path('produit_details', {'id': product.id}) }}" class="link-c link-icon">Details
+                                <span class="bi bi-chevron-right"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+               {% endfor %}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

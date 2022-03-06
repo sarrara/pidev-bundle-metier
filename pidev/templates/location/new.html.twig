@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Louer {% endblock %}
+
+{% block body %}
+
+    <section class="section-about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 section-t8 position-relative">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-5">
+                            <img src="{{ asset('Upload/')}}{{ produit.image }}" alt="" class="img-fluid">
+                        </div>
+                        <div class="col-lg-2  d-none d-lg-block position-relative">
+                            <div class="title-vertical d-flex justify-content-start">
+                                <span>{{ produit.prix }} DTN</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-5 section-md-t3">
+                            <div class="title-box-d">
+                                <h3 class="title-d">
+                                    <span class="color-d">{{ produit.nom }}</span>
+                                    <br>
+                                </h3>
+                            </div>
+                            <p class="color-text-a">
+                                {{ produit.description }}
+                            </p>
+                        </div>
+
+                    </div><br>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 section-t8">
+                    <div class="row">
+                        <div class="col-md-7">
+                            {{ form_start(form) }}
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group">
+                                        Date Debut :
+                                        {{ form_widget(form.dateDeb, { 'attr': {'class': 'form-control form-control-lg form-control-a'} }) }}
+                                        {{ form_errors(form.dateDeb) }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group">
+                                        Date Debut Fin:
+                                        {{ form_widget(form.dateFin, { 'attr': {'class': 'form-control form-control-lg form-control-a'} }) }}
+                                        {{ form_errors(form.dateFin) }}
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        Quantite:
+                                        {{ form_widget(form.quantite, { 'attr': {'class': 'form-control'} }) }}<br>
+                                        {{ form_errors(form.quantite) }}
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 text-center">
+                                    <input type="submit" value="Enregistrer" class="btn btn-success" formnovalidate />
+                                </div>
+                            </div>
+                            {{ form_end(form) }}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

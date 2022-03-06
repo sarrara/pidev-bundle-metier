@@ -1,0 +1,38 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Produit List{% endblock %}
+
+{% block body %}
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Prix</th>
+                <th>Stock</th>
+                <th>Image</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for produit in produits %}
+            <tr>
+                <td>{{ produit.nom }}</td>
+                <td>{{ produit.description }}</td>
+                <td>{{ produit.prix }}</td>
+                <td>{{ produit.stock }}</td>
+                <td><img src="{{ asset('Upload/')}}{{ produit.image }}" width="100"  /></td>
+                <td>
+                    <a href="{{ path('produit_edit', {'id': produit.id}) }}" class="btn btn-primary">Edit</a>
+                    <a href="{{ path('produit_delete', {'id': produit.id}) }}" class="btn btn-danger">Delete</a>
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {{ knp_pagination_render(produits) }}
+
+{% endblock %}

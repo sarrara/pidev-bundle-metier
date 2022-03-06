@@ -1,0 +1,34 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Location index{% endblock %}
+
+{% block body %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Quantite</th>
+                <th>DateDeb</th>
+                <th>DateFin</th>
+                <th>Produit</th>
+                <th>User</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for location in locations %}
+            <tr>
+                <td>{{ location.quantite }}</td>
+                <td>{{ location.dateDeb ? location.dateDeb|date('Y-m-d') : '' }}</td>
+                <td>{{ location.dateFin ? location.dateFin|date('Y-m-d') : '' }}</td>
+                <td>{{ location.idProduit.nom }}</td>
+                <td> {{ location.idUser.nom }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

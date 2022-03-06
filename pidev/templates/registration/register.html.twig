@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form by Colorlib</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{{ asset('registre/fonts/material-icon/css/material-design-iconic-font.min.css') }}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{{ asset('register/css/style.css') }}">
+</head>
+<body>
+
+<div class="main">
+    <div class="container">
+        <div class="signup-content">
+            <div class="signup-img">
+                <img src="{{ asset('front/assets/img/cap5.jpg') }}" alt="">
+            </div>
+            <div class="signup-form">
+                    {{ form_start(registrationForm, {'attr': {'class': 'register-form'}}) }}
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Email :</label>
+                            {{ form_widget(registrationForm.email , {'attr': {'placeholder': 'Email'}}) }}
+                            {{ form_errors(registrationForm.email) }}
+                        </div>
+                        <div class="form-group">
+                            <label for="father_name"> Name :</label>
+                            {{ form_widget(registrationForm.nom , {'attr': {'placeholder': 'Nom'}}) }}
+                            {{ form_errors(registrationForm.nom) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Prenom :</label>
+                        {{ form_widget(registrationForm.prenom , {'attr': {'placeholder': 'Prenom'}}) }}
+                        {{ form_errors(registrationForm.prenom) }}
+                    </div>
+                <div class="form-group">
+                    <label for="address">Num Tel :</label>
+                    {{ form_widget(registrationForm.numTel , {'attr': {'placeholder': 'Num°'}}) }}
+                    {{ form_errors(registrationForm.numTel) }}
+                </div>
+                <div class="form-group">
+                    <label for="address">Age :</label>
+                    {{ form_widget(registrationForm.age , {'attr': {'placeholder': 'Age'}}) }}
+                    {{ form_errors(registrationForm.age) }}
+                </div>
+                    <div class="form-group">
+                        <label for="birth_date">Password :</label>
+                        {{ form_widget(registrationForm.plainPassword , {'attr': {'placeholder': 'Password'}}) }}
+                        {{ form_errors(registrationForm.plainPassword) }}
+                    </div>
+                    <div class="form-submit">
+                        <input type="submit" value="Reset All" class="submit" name="reset" id="reset" />
+                        <input type="submit" value="Enregistrer" class="submit"  formnovalidate/>
+                    </div>
+                {{ form_end(registrationForm) }}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- JS -->
+<script src="{{ asset('register/vendor/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('register/js/main.js') }}"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
+

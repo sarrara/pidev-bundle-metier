@@ -1,0 +1,44 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %} nos randonnées {% endblock %}
+{% block body %}
+        {% for camping in campings %}
+
+            <div class="col-md-4">
+                <div class="card-box-d">
+                    <div class="card-img-d">
+                        <img src="{{ asset('Upload/')}}{{ camping.image }}" alt="" class="img-d img-fluid">
+                    </div>
+                    <div class="card-overlay card-overlay-hover">
+                        <div class="card-header-d">
+                            <div class="card-title-d align-self-center">
+                                <h3 class="title-d">
+                                    <a href="#" class="link-two">{{ camping.nom }}
+                                        <br> </a>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="card-body-d">
+
+                            <div class="info-agents color-a">
+                                <p>
+                                    <strong>Localisation: </strong> {{ camping.localisation }}
+                                </p>
+                                <p>
+                                    <strong>Date: </strong> {{ camping.dateDeb ? camping.dateDeb|date('Y-m-d') : '' }}
+                                </p>
+                                <p>
+                                    <strong>Prix: </strong> {{ camping.prix }}
+                                </p>
+                                <p>
+                                    <a href="{{ path('camping_details', {'id': camping.id}) }}" style="text-align: center !important;">Details</a>
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+{% endblock %}

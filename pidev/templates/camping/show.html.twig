@@ -1,0 +1,38 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Camping{% endblock %}
+
+{% block body %}
+    <h1>Camping</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ camping.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ camping.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ camping.prix }}</td>
+            </tr>
+            <tr>
+                <th>Localisation</th>
+                <td>{{ camping.localisation }}</td>
+            </tr>
+            <tr>
+                <th>DateDeb</th>
+                <td>{{ camping.dateDeb ? camping.dateDeb|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('camping_index') }}">back to list</a>
+
+    <a href="{{ path('camping_edit', {'id': camping.id}) }}">edit</a>
+
+    {{ include('camping/_delete_form.html.twig') }}
+{% endblock %}

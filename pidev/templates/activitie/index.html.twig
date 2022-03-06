@@ -1,0 +1,39 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Liste des activités {% endblock %}
+
+{% block body %}
+ 
+    <table class="table">
+     {% for flashMessage in app.session.flashbag.get('notice') %}
+
+                <div class="alert alert-success">
+                    <ul>
+                        <li style="text-align:center"> {{ flashMessage }}</li>
+                    </ul>
+                </div>
+
+            {% endfor %}
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for activitie in activities %}
+            <tr>
+                <td>{{ activitie.nom }}</td>
+                <td>{{ activitie.description }}</td>
+                <td>
+                      <a href="{{ path('activitie_edit', {'id': activitie.id}) }}" class="btn btn-primary ">modifier</a>
+                <a href="{{ path('activitie_delete', {'id': activitie.id}) }}" class="btn btn-danger " onclick="return confirm('voulez-vous vraiment supprimer ceci')">supprimer</a>
+                </td>
+            </tr>
+
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

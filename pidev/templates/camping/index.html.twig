@@ -1,0 +1,64 @@
+{% extends 'back.html.twig' %}
+
+
+{% block body %}
+    <h1>liste des randonnées </h1><br><br><br>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#rech tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+    <input class="form-control" id="myInput" type="text" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search"><br><br>
+
+
+    <table class="table">
+      {% for flashMessage in app.session.flashbag.get('notice') %}
+
+                <div class="alert alert-success">
+                    <ul>
+                        <li style="text-align:center"> {{ flashMessage }}</li>
+                    </ul>
+                </div>
+
+            {% endfor %}
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prix</th>
+                <th>nombre de participant </th>
+                <th>Localisation</th>
+                <th>DateDeb</th>
+                <th>Activite</th>
+                <th>Image</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody  id="rech">
+        {% for camping in campings %}
+            <tr>
+                <td>{{ camping.nom }}</td>
+                <td>{{ camping.prix }}</td>
+                <td>{{ camping.nbrPlace}}</td>
+                <td>{{ camping.localisation }}</td>
+                <td>{{ camping.dateDeb ? camping.dateDeb|date('Y-m-d') : '' }}</td>
+                <td>{{ camping.idActivite.nom }}</td>
+                <td><img src="{{ asset('Upload/')}}{{ camping.image }}" width="100"  /></td>
+                <td>
+                        <a href="{{ path('camping_edit', {'id': camping.id}) }}" class="btn btn-primary">modifier</a>
+                        <a href="{{ path('camping_delete', {'id': camping.id}) }}" class="btn btn-danger"onclick="return confirm('voulez-vous vraiment supprimer ceci')">supprimer</a>
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
